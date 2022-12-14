@@ -1,8 +1,6 @@
 package org.osull.angrybirds.physicsdemo.screens;
 
 import static org.osull.angrybirds.physicsdemo.PhysicsDemo.LOG_TAG;
-import static org.osull.angrybirds.physicsdemo.bodies.AngryBird.BODY_ANGRY_BIRD;
-import static org.osull.angrybirds.physicsdemo.bodies.Plank.BODY_PLANK;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -10,10 +8,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -21,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-import org.osull.angrybirds.physicsdemo.ContactListenerClass;
+import org.osull.angrybirds.physicsdemo.bodies.ContactListenerClass;
 import org.osull.angrybirds.physicsdemo.bodies.AngryBird;
 import org.osull.angrybirds.physicsdemo.bodies.Floor;
 import org.osull.angrybirds.physicsdemo.bodies.Plank;
@@ -29,7 +23,7 @@ import org.osull.angrybirds.physicsdemo.bodies.Plank;
 
 public class LevelTwo implements Screen   {
     private final ExtendViewport viewport;
-    private final AngryBird missile;
+    private AngryBird missile;
     private Stage stage;
     private Game game;
     private World world;
@@ -80,8 +74,9 @@ public class LevelTwo implements Screen   {
         Floor platform1 = new Floor(world,5,6,3,8,0);
         stage.addActor(platform1);
 
-        this.missile = new AngryBird(world,6.5f, WORLD_HEIGHT);
-        stage.addActor(missile);
+        newAngryBird(world, 6.5f, WORLD_HEIGHT);
+        missile.setTouchable(Touchable.enabled);
+
         missile.addListener(new InputListener() {
 
             public void touchDragged (InputEvent event, float x, float y, int pointer) {
@@ -94,6 +89,8 @@ public class LevelTwo implements Screen   {
                 Gdx.app.log(LOG_TAG, "TouchDown X:" + x + " Y:" + y);
                 touchDownX = x;
                 touchDownY = y;
+                //missile.setTouchable(Touchable.disabled);
+
                 // the values of x and y for when mouse or a finger is pressed
 
                 return true;
@@ -118,11 +115,14 @@ public class LevelTwo implements Screen   {
 //                }
 
                 //applies impulse (push of movement) to the missile
+                //missile.setTouchable(Touchable.disabled);
+
+                newAngryBird(world,6.5f, WORLD_HEIGHT);
+
             }
 
         });
 
-        missile.setTouchable(Touchable.enabled);
 
         stage.addActor(new Floor(world,0,2,WORLD_WIDTH*2,5,0));
 
@@ -146,6 +146,12 @@ public class LevelTwo implements Screen   {
 
         Gdx.graphics.setTitle("FPS: "+Gdx.graphics.getFramesPerSecond());
         doPhysicsStep(delta);
+    }
+    public void newAngryBird(World world, float xPos, float yPos){
+        this.missile = new AngryBird(world,6.5f, WORLD_HEIGHT);
+        stage.addActor(missile);
+        missile.setTouchable(Touchable.enabled);
+
     }
 
 

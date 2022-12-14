@@ -38,7 +38,7 @@ public class AngryBird extends Image  {
 
         world = aWorld;
 //        effect = new ParticleEffect();
-//        effect.load(Gdx.files.internal("bubleNote.p"), PhysicsDemo.textureAtlas);
+//        effect.load(Gdx.files.internal("bubbleNote.p"), PhysicsDemo.textureAtlas);
 //        effect.start();
 //        effect.setPosition(this.getWidth()/2+this.getX(),this.getHeight()/2+this.getY());
 

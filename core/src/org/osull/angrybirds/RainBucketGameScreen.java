@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import org.osull.angrybirds.physicsdemo.ContactListenerClass;
+import org.osull.angrybirds.physicsdemo.bodies.ContactListenerClass;
 
 public class RainBucketGameScreen implements Screen, InputProcessor {
 
