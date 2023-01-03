@@ -61,7 +61,7 @@ public class AngryBird extends Image  {
         fixtureDef.friction = 0.5f;
         fixtureDef.restitution= 0.5f;
         Fixture fixture = body.createFixture(fixtureDef);
-
+//Controls the properties of the body - mass is calculated from these
         shape.dispose();
         this.setOrigin(this.getWidth()/2,this.getHeight()/2);
 

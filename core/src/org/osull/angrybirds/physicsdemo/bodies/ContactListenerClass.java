@@ -17,6 +17,7 @@ import org.osull.angrybirds.physicsdemo.bodies.Plank;
 
 public class ContactListenerClass implements ContactListener {
     private Vector2 MaxCollisionVel = new Vector2(0f,3f);
+    private static boolean collisionBool = false;
     @Override
     public void endContact(Contact contact) {
 
@@ -35,9 +36,12 @@ public class ContactListenerClass implements ContactListener {
             this.logData(BODY_PLANK, contact.getFixtureA());
 
             // TODO improve the comparision of the linear velocity vector
-            if (getFixtureLinVelocity(contact.getFixtureA()).x >= 3 ||
-                    getFixtureLinVelocity(contact.getFixtureA()).y >= 3) {
-                contact.getFixtureA().getBody().setLinearVelocity(500f,500f);
+            if (getFixtureLinVelocity(contact.getFixtureA()).x >= 5 ||
+                    getFixtureLinVelocity(contact.getFixtureA()).y >= 5) {
+
+                //contact.getFixtureA().getBody().getUserData();
+                Gdx.app.log(LOG_TAG, "Hit with linear velocity >= 5");
+                //setCollisionBool(true);
 
             }
         }
@@ -52,6 +56,7 @@ public class ContactListenerClass implements ContactListener {
         Gdx.app.log(LOG_TAG, type + " angle "+fixture.getBody().getAngle());
 
     }
+
     public Vector2 getFixtureLinVelocity(Fixture fixture){
         return fixture.getBody().getLinearVelocity();
     }

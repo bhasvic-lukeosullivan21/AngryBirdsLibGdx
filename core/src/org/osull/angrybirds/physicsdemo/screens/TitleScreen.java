@@ -30,11 +30,12 @@ public class TitleScreen implements Screen {
         title.setY(Gdx.graphics.getHeight()*2/3);
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
+        //title text
 
-        TextButton playButton = new TextButton("Level 1", PhysicsDemo.skin);
-        playButton.setWidth(Gdx.graphics.getWidth()/2);
-        playButton.setPosition(Gdx.graphics.getWidth()/2-playButton.getWidth()/2,Gdx.graphics.getHeight()/2-playButton.getHeight()/2);
-        playButton.addListener(new InputListener(){
+        TextButton level1Button = new TextButton("Level 1", PhysicsDemo.skin);
+        level1Button.setWidth(Gdx.graphics.getWidth()/2);
+        level1Button.setPosition(Gdx.graphics.getWidth()/2-level1Button.getWidth()/2,Gdx.graphics.getHeight()/2-level1Button.getHeight()/2);
+        level1Button.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.setScreen(new LevelOne(game));
@@ -44,10 +45,12 @@ public class TitleScreen implements Screen {
                 return true;
             }
         });
-        stage.addActor(playButton);
+        stage.addActor(level1Button);
+        //adds the level one button
+
         TextButton level2Button = new TextButton("Level 2", PhysicsDemo.skin);
         level2Button.setWidth(Gdx.graphics.getWidth()/2);
-       // level2Button.setPosition(Gdx.graphics.getWidth()/2-level2Button.getWidth()/2 + 5,Gdx.graphics.getHeight()/2-level2Button.getHeight()/2 + 5);
+        level2Button.setPosition(Gdx.graphics.getWidth()/2-level2Button.getWidth()/2,Gdx.graphics.getHeight()/2-level2Button.getHeight()/2 - 150);
         level2Button.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -60,7 +63,7 @@ public class TitleScreen implements Screen {
             }
         });
         stage.addActor(level2Button);
-
+//adds level 2 button
 
 
     }
